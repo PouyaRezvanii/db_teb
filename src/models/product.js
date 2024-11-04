@@ -23,6 +23,17 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    categories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true,
+    }],
+    vendor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Vendor',
+        required: true,
+    }
+
 
 },
 {
