@@ -1,6 +1,8 @@
 const express = require('express')
 const Category = require('../../models/category')
 const { check, validationResult } = require('express-validator')
+const validationRequest = require('../../common/middleware/validation-request');
+const BadRequestError = require('../../common/errors/bad-request-error');
 
 const router = express.Router();
 
@@ -15,23 +17,24 @@ const validator = [
 ]
 
 router.post('/create',
-    validator,
-    async(req, res, next) => {
+        validator,
+        validationRequest,         // بررسی خطاهای اعتبارسنجی
+        async(req, res, next) => {
 
     try {
-
         // بررسی خطاهای اعتبارسنجی
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
 
         const { catName } = req.body;
 
         // بررسی وجود دسته‌بندی با نام مشابه
         const existingCategory = await Category.findOne({ catName });
         if (existingCategory) {
-            return res.status(400).json({ message: 'دسته‌بندی با این نام قبلاً وجود دارد.' });
+            //return res.status(400).json({ message: 'دسته‌بندی با این نام قبلاً وجود دارد.' });
+            return next(new BadRequestError('دسته‌بندی با این نام وجود دارد.'))
         }
 
         const newCategory = new Category({
@@ -47,8 +50,7 @@ router.post('/create',
 
     } 
     catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'خطا در ایجاد دسته‌بندی.' });
+        return next(error)
     }
 
 })
