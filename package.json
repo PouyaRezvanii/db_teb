@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "dev": "npm nodemon ./src/main.js"
+    "dev": "nodemon ./src/main.js"
   },
   "keywords": [],
   "author": "",
