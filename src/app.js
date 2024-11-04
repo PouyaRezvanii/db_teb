@@ -3,7 +3,8 @@ const express = require('express');
 // category route
 const createCategoryRoute = require('../src/routes/category/create');
 const readCategoryRoute = require('../src/routes/category/read');
-
+const updateCategoryRoute = require('../src/routes/category/update');
+const deleteCategoryRoute = require('../src/routes/category/delete');
 
 //error
 const NotFoundError = require('./common/errors/not-found-error');
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/category/',
     createCategoryRoute,
     readCategoryRoute,
+    updateCategoryRoute,
+    deleteCategoryRoute
 )
 
 // 404 not found

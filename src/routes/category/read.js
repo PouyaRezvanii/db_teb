@@ -1,5 +1,6 @@
 const express = require('express');
-const Category = require('../../models/category')
+const Category = require('../../models/category');
+const NotFoundError = require('../../common/errors/not-found-error');
 
 const router = express.Router();
 
