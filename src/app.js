@@ -6,6 +6,15 @@ const readCategoryRoute = require('../src/routes/category/read');
 const updateCategoryRoute = require('../src/routes/category/update');
 const deleteCategoryRoute = require('../src/routes/category/delete');
 
+//vendor Route
+const createVendorRoute = require('../src/routes/vendor/create')
+const readVendorRoute = require('../src/routes/vendor/read')
+const updateVendorRoute = require('../src/routes/vendor/update')
+const deleteVendorRoute = require('../src/routes/vendor/delete')
+
+
+
+
 //error
 const NotFoundError = require('./common/errors/not-found-error');
 const CustomError = require('./common/errors/custom-error');
@@ -21,6 +30,13 @@ app.use('/category/',
     readCategoryRoute,
     updateCategoryRoute,
     deleteCategoryRoute
+)
+
+app.use('/vendor/',
+    createVendorRoute,
+    readVendorRoute,
+    updateVendorRoute,
+    deleteVendorRoute
 )
 
 // 404 not found
