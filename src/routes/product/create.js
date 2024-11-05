@@ -30,7 +30,7 @@ const validator = [
     check('description')
         .notEmpty().withMessage('توضیحات محصول الزامی است.')
         .isString().withMessage('توضیحات محصول باید یک رشته باشد.')
-        .isLength({ min: 10, max: 500 }).withMessage('توضیحات محصول باید بین ۱۰ تا ۵۰۰ کاراکتر باشد.'),
+        .isLength({ min: 5, max: 500 }).withMessage('توضیحات محصول باید بین ۵ تا ۵۰۰ کاراکتر باشد.'),
     
     check('price')
         .notEmpty().withMessage('قیمت محصول الزامی است.')
@@ -62,7 +62,6 @@ const validator = [
         .isString().withMessage('فروشنده باید یک رشته باشد.')
 ];
 
-// مسیر ایجاد محصول
 router.post('/create', 
         upload.single('image'), 
         validator, 

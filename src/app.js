@@ -14,6 +14,7 @@ const deleteVendorRoute = require('../src/routes/vendor/delete')
 
 // product route
 const createProductRoute = require('../src/routes/product/create')
+const readProductRoute = require('../src/routes/product/read')
 
 
 //error
@@ -42,6 +43,8 @@ app.use('/vendor/',
 
 app.use('/product/',
     createProductRoute,
+    readProductRoute,
+    
 )
 
 // 404 not found
