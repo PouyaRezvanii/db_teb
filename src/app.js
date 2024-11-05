@@ -6,13 +6,14 @@ const readCategoryRoute = require('../src/routes/category/read');
 const updateCategoryRoute = require('../src/routes/category/update');
 const deleteCategoryRoute = require('../src/routes/category/delete');
 
-//vendor Route
+// vendor Route
 const createVendorRoute = require('../src/routes/vendor/create')
 const readVendorRoute = require('../src/routes/vendor/read')
 const updateVendorRoute = require('../src/routes/vendor/update')
 const deleteVendorRoute = require('../src/routes/vendor/delete')
 
-
+// product route
+const createProductRoute = require('../src/routes/product/create')
 
 
 //error
@@ -37,6 +38,10 @@ app.use('/vendor/',
     readVendorRoute,
     updateVendorRoute,
     deleteVendorRoute
+)
+
+app.use('/product/',
+    createProductRoute,
 )
 
 // 404 not found
