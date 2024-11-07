@@ -3,6 +3,10 @@ const express = require('express');
 // User
 const User = require('../src/models/user')
 
+// auth route
+const signupRoute = require('../src/routes/auth/signup');
+const signinRoute = require('../src/routes/auth/signin');
+
 // category route
 const createCategoryRoute = require('../src/routes/category/create');
 const readCategoryRoute = require('../src/routes/category/read');
@@ -31,6 +35,11 @@ const app = express()
 // parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use('/auth',
+    signupRoute,
+    signinRoute
+)
 
 app.use('/category/',
     createCategoryRoute,
