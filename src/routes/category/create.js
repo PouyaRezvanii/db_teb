@@ -1,6 +1,6 @@
 const express = require('express')
 const Category = require('../../models/category')
-const { check, validationResult } = require('express-validator')
+const { check } = require('express-validator')
 const validationRequest = require('../../common/middleware/validation-request');
 const BadRequestError = require('../../common/errors/bad-request-error');
 
