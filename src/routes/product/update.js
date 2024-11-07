@@ -29,9 +29,6 @@ router.post('/update/:productId', upload.single('image'), async (req, res, next)
             vendor
         } = req.body;
 
-        console.log('Product ID:', productId);
-        console.log('Request Body:', req.body);
-
         const oldProduct = await Product.findById(productId);
         if (!oldProduct) {
             return next(new BadRequestError('محصول پیدا نشد.'));
