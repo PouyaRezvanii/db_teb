@@ -1,5 +1,8 @@
 const express = require('express');
 
+// User
+const User = require('../src/models/user')
+
 // category route
 const createCategoryRoute = require('../src/routes/category/create');
 const readCategoryRoute = require('../src/routes/category/read');
