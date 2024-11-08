@@ -1,8 +1,12 @@
 const express = require('express');
 
 // auth route
-// const signupRoute = require('../src/routes/auth/signup');
-// const signinRoute = require('../src/routes/auth/signin');
+const signupRoute = require('../src/routes/auth/signup');
+const signinRoute = require('../src/routes/auth/signin');
+
+// current user
+const currentUser = require('../src/common/middleware/current-user');
+const authorize = require('../src/common/middleware/authorize');
 
 // category route
 const createCategoryRoute = require('../src/routes/category/create');
@@ -27,9 +31,6 @@ const deleteProductRoute = require('../src/routes/product/delete')
 const NotFoundError = require('./common/errors/not-found-error');
 const CustomError = require('./common/errors/custom-error');
 
-// Middlewares
-// const auth = require('./common/middleware/auth');         // Middleware احراز هویت
-// const authorize = require('./common/middleware/authorize'); // Middleware سطح دسترسی
 
 // cookie
 const cookieSession = require('cookie-session');
@@ -37,58 +38,50 @@ const cookieSession = require('cookie-session');
 
 const app = express()
 
+app.set('trust_proxy', true);
+
 // parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// app.use(
-//     cookieSession({
-//         name: 'session',
-//         keys: ['secret_key'], // کلید پیش‌فرض برای رمزگذاری کوکی‌ها
-//         maxAge: 24 * 60 * 60 * 1000, // زمان انقضای کوکی: 24 ساعت
-//         secure: false, // استفاده از کوکی امن (HTTPS) در حالت غیرفعال
-//         httpOnly: true // فقط در سمت سرور قابل دسترسی است
-//     })
-// );
+app.use(cookieSession({
+        signed: false,
+        secure: false
+    })
+);
 
-// app.use('/auth',
-//     signupRoute,
-//     signinRoute
-// )
+app.use('/auth',
+    signupRoute,
+    signinRoute
+)
 
 app.use('/category/',
-    createCategoryRoute,
     readCategoryRoute,
+    currentUser,
+    authorize('admin'),
+    createCategoryRoute,   
     updateCategoryRoute,
     deleteCategoryRoute
 )
 
 app.use('/vendor/',
     readVendorRoute,
+    currentUser,
+    authorize('admin'),
     createVendorRoute,
     updateVendorRoute,
     deleteVendorRoute
 )
 
 app.use('/product/',
-    createProductRoute,
     readProductRoute,
+    currentUser,
+    authorize('admin'),
+    createProductRoute,
     updateProductRoute,
     deleteProductRoute
 )
 
-// محدود کردن دسترسی برای ایجاد، ویرایش و حذف مسیرها فقط برای ادمین
-// app.use('/category/create', authorize('admin'), createCategoryRoute);
-// app.use('/category/update', authorize('admin'), updateCategoryRoute);
-// app.use('/category/delete', authorize('admin'), deleteCategoryRoute);
-
-// app.use('/vendor/create', authorize('admin'), createVendorRoute);
-// app.use('/vendor/update', authorize('admin'), updateVendorRoute);
-// app.use('/vendor/delete', authorize('admin'), deleteVendorRoute);
-
-// app.use('/product/create', authorize('admin'), createProductRoute);
-// app.use('/product/update', authorize('admin'), updateProductRoute);
-// app.use('/product/delete', authorize('admin'), deleteProductRoute);
 
 // 404 not found
 app.all("*", (req, res, next) => {
