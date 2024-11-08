@@ -1,29 +1,45 @@
 const express = require('express')
 const Product = require('../../models/product');
-const BadRequestError = require('../../common/errors/bad-request-error');
 const NotFoundError = require('../../common/errors/not-found-error');
 
 const router = express.Router();
 
-router.get('/all', async(req, res, next) => {
-
+router.get('/all', async (req, res, next) => {
     try {
+        const { category, sortPrice } = req.query;
         
-        const products = await Product.find()
+        // شیء فیلتر برای نگهداری شرایط جستجو
+        let filter = {};
 
-        if(!products || products.length === 0){
-            return next(new NotFoundError('محصولی وجود ندارد'))
+        // اعمال فیلتر دسته‌بندی در صورت ارسال پارامتر
+        if (category) {
+            filter.categories = category;
+        }
+
+        // شیء مرتب‌سازی
+        let sort = {};
+
+        // اعمال مرتب‌سازی قیمت در صورت ارسال پارامتر
+        if (sortPrice) {
+            sort.price = sortPrice === 'asc' ? 1 : -1; // 1 برای صعودی، -1 برای نزولی
+        }
+
+        // دریافت محصولات با فیلترها و مرتب‌سازی اختیاری
+        const products = await Product.find(filter).sort(sort).populate('categories').populate('vendor');
+
+        if (!products || products.length === 0) {
+            return next(new NotFoundError('محصولی وجود ندارد'));
         }
 
         res.status(200).json({
             products: products
-        })
-
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
+});
 
-})
+module.exports = router;
 
 router.get('/:productId', async(req, res, next) => {
     

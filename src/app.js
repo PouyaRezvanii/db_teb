@@ -75,8 +75,8 @@ app.use('/vendor/',
 
 app.use('/product/',
     readProductRoute,
-    currentUser,
-    authorize('admin'),
+    // currentUser,
+    // authorize('admin'),
     createProductRoute,
     updateProductRoute,
     deleteProductRoute
