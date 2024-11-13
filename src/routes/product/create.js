@@ -72,6 +72,7 @@ router.post('/create',
 
         const { name, description, price, productUrl, categories, vendor } = req.body;
         const image = req.file ? req.file.path : null; 
+        
 
         // ایجاد محصول جدید
         const newProduct = new Product({

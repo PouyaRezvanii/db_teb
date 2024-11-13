@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors'); // اضافه کردن CORS
+const path = require('path');
 
 // auth route
 const signupRoute = require('../src/routes/auth/signup');
@@ -40,6 +42,14 @@ const app = express()
 
 app.set('trust_proxy', true);
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+app.use(cors({
+    origin: 'http://localhost:3000', // آدرس فرانت‌اند (پورت 3000 یا هر پورت دیگری که استفاده می‌کنید)
+    credentials: true               // برای ارسال کوکی‌ها و اطلاعات احراز هویت
+}));
+
 // parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -57,8 +67,8 @@ app.use('/auth',
 
 app.use('/category/',
     readCategoryRoute,
-    currentUser,
-    authorize('admin'),
+    // currentUser,
+    // authorize('admin'),
     createCategoryRoute,   
     updateCategoryRoute,
     deleteCategoryRoute
@@ -66,8 +76,8 @@ app.use('/category/',
 
 app.use('/vendor/',
     readVendorRoute,
-    currentUser,
-    authorize('admin'),
+    // currentUser,
+    // authorize('admin'),
     createVendorRoute,
     updateVendorRoute,
     deleteVendorRoute

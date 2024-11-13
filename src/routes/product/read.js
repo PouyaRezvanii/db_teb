@@ -25,9 +25,10 @@ router.get('/all', async (req, res, next) => {
         }
 
         // دریافت محصولات با فیلترها و مرتب‌سازی اختیاری
-        const products = await Product.find(filter).sort(sort).populate('categories').populate('vendor');
+        const products = await Product.find(filter).sort(sort)
+        // .populate('categories').populate('vendor');
 
-        if (!products || products.length === 0) {
+        if (!products) {
             return next(new NotFoundError('محصولی وجود ندارد'));
         }
 
@@ -47,7 +48,7 @@ router.get('/:productId', async(req, res, next) => {
         const { productId } = req.params;
 
         const product = await Product.findById(productId);
-        if(!product || product.length === 0){
+        if(!product){
             return next(new NotFoundError('محصول یافت نشد'))
         }
 
