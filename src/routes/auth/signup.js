@@ -28,7 +28,7 @@ router.post('/signup', validator, validationRequest, async (req, res, next) => {
 
         const token = jwt.sign(
             { email, userId: user._id, role: user.role },
-            'secret_key',
+            process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
 

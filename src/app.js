@@ -1,5 +1,7 @@
+require('dotenv').config()
+
 const express = require('express');
-const cors = require('cors'); // اضافه کردن CORS
+const cors = require('cors'); 
 const path = require('path');
 
 // auth route
@@ -37,8 +39,21 @@ const CustomError = require('./common/errors/custom-error');
 // cookie
 const cookieSession = require('cookie-session');
 
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan')
+
+const fs = require('fs')
 
 const app = express()
+
+app.use(helmet());
+app.use(compression())
+
+const accessLogPath = path.join(__dirname, '../access.log');
+const accessLogStream = fs.createWriteStream(accessLogPath, { flags: 'a' });
+
+app.use(morgan('combined', { access: accessLogStream }));
 
 app.set('trust_proxy', true);
 

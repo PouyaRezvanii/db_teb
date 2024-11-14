@@ -10,7 +10,7 @@ const currentUser = (req, res, next) => {
             throw new NotAuthorizedError('Token missing');
         }
 
-        const payload = jwt.verify(token, 'secret_key'); 
+        const payload = jwt.verify(token, process.env.JWT_SECRET); 
         //console.log("Payload:", payload);
         req.currentUser = payload; 
         next();

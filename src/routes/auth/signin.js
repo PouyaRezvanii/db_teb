@@ -23,7 +23,7 @@ router.post('/signin', async (req, res, next) => {
 
         const token = jwt.sign(
             { email, userId: user._id, role: user.role }, // اضافه کردن نقش
-            'secret_key',
+            process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
 

@@ -1,7 +1,7 @@
 const app = require('./app')
 const mongoose = require('mongoose');
 
- mongoose.connect('mongodb+srv://admin:NyUMADRXCZVKlijk@cluster0.chmto.mongodb.net/db_teb?retryWrites=true&w=majority&appName=Cluster0')
+ mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     app.listen(5000, () => {
         console.log("server is up and running on port 5000")
