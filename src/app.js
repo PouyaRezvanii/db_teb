@@ -61,8 +61,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 app.use(cors({
-    origin: 'http://localhost:3000', // آدرس فرانت‌اند (پورت 3000 یا هر پورت دیگری که استفاده می‌کنید)
-    credentials: true               // برای ارسال کوکی‌ها و اطلاعات احراز هویت
+    origin: 'http://localhost:3000',
+    credentials: true             
 }));
 
 // parser
@@ -82,8 +82,8 @@ app.use('/auth',
 
 app.use('/category/',
     readCategoryRoute,
-    // currentUser,
-    // authorize('admin'),
+    currentUser,
+    authorize('admin'),
     createCategoryRoute,   
     updateCategoryRoute,
     deleteCategoryRoute
@@ -91,8 +91,8 @@ app.use('/category/',
 
 app.use('/vendor/',
     readVendorRoute,
-    // currentUser,
-    // authorize('admin'),
+    currentUser,
+    authorize('admin'),
     createVendorRoute,
     updateVendorRoute,
     deleteVendorRoute
@@ -100,8 +100,8 @@ app.use('/vendor/',
 
 app.use('/product/',
     readProductRoute,
-    // currentUser,
-    // authorize('admin'),
+    currentUser,
+    authorize('admin'),
     createProductRoute,
     updateProductRoute,
     deleteProductRoute
