@@ -60,3 +60,19 @@
   **Fields:** `{ email, password }`
 
 ---
+## Getting Started
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+
+2. Install dependencies:
+    npm install
+3. Create a .env file in the root directory with the following values:
+    MONGO_URI=<your_mongodb_connection_string>
+    JWT_SECRET=<your_jwt_secret_key>
+    PORT=5000
+4. To start the API server:
+    npm run dev
+    The server will run on http://localhost:5000 by default.
