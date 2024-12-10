@@ -30,6 +30,12 @@ const readProductRoute = require('../src/routes/product/read')
 const updateProductRoute = require('../src/routes/product/update')
 const deleteProductRoute = require('../src/routes/product/delete')
 
+// exercise
+const createExerciseRoute = require('../src/routes/exercise/create')
+const readExerciseRoute = require('../src/routes/exercise/read')
+const updateExerciseRoute = require('../src/routes/exercise/update')
+const deleteExerciseRoute = require('../src/routes/exercise/delete')
+
 
 //error
 const NotFoundError = require('./common/errors/not-found-error');
@@ -82,8 +88,8 @@ app.use('/auth',
 
 app.use('/category/',
     readCategoryRoute,
-    currentUser,
-    authorize('admin'),
+    // currentUser,
+    // authorize('admin'),
     createCategoryRoute,   
     updateCategoryRoute,
     deleteCategoryRoute
@@ -91,8 +97,8 @@ app.use('/category/',
 
 app.use('/vendor/',
     readVendorRoute,
-    currentUser,
-    authorize('admin'),
+    // currentUser,
+    // authorize('admin'),
     createVendorRoute,
     updateVendorRoute,
     deleteVendorRoute
@@ -100,11 +106,20 @@ app.use('/vendor/',
 
 app.use('/product/',
     readProductRoute,
-    currentUser,
-    authorize('admin'),
+    // currentUser,
+    // authorize('admin'),
     createProductRoute,
     updateProductRoute,
     deleteProductRoute
+)
+
+app.use('/exercise/',
+    readExerciseRoute,
+    // currentUser,
+    // authorize('admin')
+    createExerciseRoute,
+    updateExerciseRoute,
+    deleteExerciseRoute
 )
 
 
