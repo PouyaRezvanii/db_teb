@@ -1,43 +1,62 @@
-# this is a api for db_teb. db_teb is a shop for diabetes.
+# DB_Teb API
+
+**DB_Teb API** is a comprehensive backend system for a shop tailored to individuals with diabetes. This API facilitates the management of vendors, product categories, products, exercise plans, dietary plans, and user authentication. The goal is to provide a structured backend for introducing and managing products and health-related resources for diabetes care.
+
+---
 
 
 # postman curl 
 
 ## baseurl = http://localhost:5000/ 
 
-### Vendor Route
-GET : vendor/all \
-POST : vendor/create => fields: { website, name } \
-POST : vendor/update/:vId  => fields: { website, name } \
-DELETE : vendor/delete/:vId \
+## Features
 
-### Category Route
-GET : category/all \
-POST : category/create  => fields: { catName } \
-POST : category/update/:catId  => fields: { catName } \
-DELETE : category/delete/:catId \
+### 1. **Vendor Management**
+- **GET** `/vendor/all`: Retrieve a list of all vendors.
+- **POST** `/vendor/create`: Add a new vendor.  
+  **Fields:** `{ website, name }`
+- **POST** `/vendor/update/:vId`: Update an existing vendor by ID.  
+  **Fields:** `{ website, name }`
+- **DELETE** `/vendor/delete/:vId`: Delete a vendor by ID.
 
-### Product Route
-GET : product/all \
-GET : product//:productId \
-POST : product/create  => fields: { name, description, price, productUrl, categories, vendor } \
-POST : product/update/:productId  => fields: 
-                                    { name, description, price, productUrl, categories, vendor } \
-DELETE : product/delete/:productId \
+### 2. **Category Management**
+- **GET** `/category/all`: Retrieve a list of all categories.
+- **POST** `/category/create`: Add a new category.  
+  **Fields:** `{ catName }`
+- **POST** `/category/update/:catId`: Update an existing category by ID.  
+  **Fields:** `{ catName }`
+- **DELETE** `/category/delete/:catId`: Delete a category by ID.
 
-### Exercise Route
-GET : exercise/all \
-POST : exercise/create  => fields: { name, duration, intensity:  enum: ['آسان', 'متوسط', 'دشوار'] } \
-POST : exercise/update/:excId  => fields: 
-                            { name, duration, intensity:  enum: ['آسان', 'متوسط', 'دشوار']} \
-DELETE : exercise/delete/:excId \
+### 3. **Product Management**
+- **GET** `/product/all`: Retrieve a list of all products.
+- **GET** `/product/:productId`: Retrieve a specific product by ID.
+- **POST** `/product/create`: Add a new product.  
+  **Fields:** `{ name, description, price, productUrl, categories, vendor }`
+- **POST** `/product/update/:productId`: Update an existing product by ID.  
+  **Fields:** `{ name, description, price, productUrl, categories, vendor }`
+- **DELETE** `/product/delete/:productId`: Delete a product by ID.
 
-### Diet Route
-GET : diet/all \
-POST : diet/create  => fields: { title, breakfast, lunch, dinner, snacks(optional) } \
-POST : diet/update/:dietId  => fields: { title, breakfast, lunch, dinner, snacks(optional) } \
-DELETE : diet/delete/:dietId \
+### 4. **Exercise Management**
+- **GET** `/exercise/all`: Retrieve a list of all exercises.
+- **POST** `/exercise/create`: Add a new exercise.  
+  **Fields:** `{ name, duration, intensity }`  
+  **`intensity` Enum:** `['آسان', 'متوسط', 'دشوار']`
+- **POST** `/exercise/update/:excId`: Update an existing exercise by ID.  
+  **Fields:** `{ name, duration, intensity }`
+- **DELETE** `/exercise/delete/:excId`: Delete an exercise by ID.
 
-### Auth Route
-SignUp => POST: auth/signup { email, password, role = 'user or admin' } \
-SignIn => POST: auth/signin { email, password } \
+### 5. **Diet Management**
+- **GET** `/diet/all`: Retrieve a list of all dietary plans.
+- **POST** `/diet/create`: Add a new dietary plan.  
+  **Fields:** `{ title, breakfast, lunch, dinner, snacks(optional) }`
+- **POST** `/diet/update/:dietId`: Update an existing dietary plan by ID.  
+  **Fields:** `{ title, breakfast, lunch, dinner, snacks(optional) }`
+- **DELETE** `/diet/delete/:dietId`: Delete a dietary plan by ID.
+
+### 6. **User Authentication**
+- **POST** `/auth/signup`: Register a new user (admin or regular).  
+  **Fields:** `{ email, password, role = 'user or admin' }`
+- **POST** `/auth/signin`: Authenticate a user and retrieve a session token.  
+  **Fields:** `{ email, password }`
+
+---
