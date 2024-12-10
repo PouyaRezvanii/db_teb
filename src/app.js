@@ -36,6 +36,13 @@ const readExerciseRoute = require('../src/routes/exercise/read')
 const updateExerciseRoute = require('../src/routes/exercise/update')
 const deleteExerciseRoute = require('../src/routes/exercise/delete')
 
+// diet
+const createDietRoute = require('../src/routes/diet/create')
+const readDietRoute = require('../src/routes/diet/read')
+const updateDietRoute = require('../src/routes/diet/update')
+const deleteDietRoute = require('../src/routes/diet/delete')
+
+
 
 //error
 const NotFoundError = require('./common/errors/not-found-error');
@@ -120,6 +127,15 @@ app.use('/exercise/',
     createExerciseRoute,
     updateExerciseRoute,
     deleteExerciseRoute
+)
+
+app.use('/diet/', 
+    readDietRoute,
+    // currentUser,
+    // authorize('admin'),
+    createDietRoute,
+    updateDietRoute,
+    deleteDietRoute
 )
 
 
