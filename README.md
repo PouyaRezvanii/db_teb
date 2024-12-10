@@ -68,11 +68,16 @@
    git clone <repository-url>
 
 2. Install dependencies:
+     ```bash
     npm install
 3. Create a .env file in the root directory with the following values:
+    ```bash
     MONGO_URI=<your_mongodb_connection_string>
     JWT_SECRET=<your_jwt_secret_key>
     PORT=5000
 4. To start the API server:
-    npm run dev
-    The server will run on http://localhost:5000 by default.
+    ```bash
+        npm run dev
+    
+    
+The server will run on http://localhost:5000 by default.
