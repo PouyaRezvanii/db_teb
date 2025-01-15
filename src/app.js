@@ -63,7 +63,7 @@ const app = express()
 app.use(helmet());
 app.use(compression())
 
-const accessLogPath = path.join(__dirname, '../access.log');
+const accessLogPath = path.join(__dirname, '/../access.log');
 const accessLogStream = fs.createWriteStream(accessLogPath, { flags: 'a' });
 
 app.use(morgan('combined', { access: accessLogStream }));

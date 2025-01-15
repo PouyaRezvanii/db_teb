@@ -39,7 +39,7 @@ const validator = [
     check('productUrl')
         .notEmpty().withMessage('آدرس محصول الزامی است.') // بررسی اینکه فیلد خالی نباشد
         .isString().withMessage('آدرس محصول باید یک URL معتبر باشد.')
-        .isLength({ min: 5, max: 100 }).withMessage('طول آدرس باید بین ۵ تا ۱۰۰ کاراکتر باشد.'),
+        .isLength({ min: 5, max: 1000 }).withMessage('طول آدرس باید بین ۵ تا ۱۰0۰ کاراکتر باشد.'),
 
     check('categories')
         .custom((value) => {
