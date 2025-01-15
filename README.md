@@ -29,6 +29,9 @@
 
 ### 3. **Product Management**
 - **GET** `/product/all`: Retrieve a list of all products.
+- **GET** `/product/all?search=test`: Retrieve a list of products including "test".
+- **GET** `/product/all?sortPrice=asc(desc)`: Retrieve a list of products sorted by price in ascending (asc) or descending (desc) order.
+- **GET** `/product/all?category=673493b9532ddb20a7bebad3`: Retrieve a list of products filtered by the specified category ID.
 - **GET** `/product/:productId`: Retrieve a specific product by ID.
 - **POST** `/product/create`: Add a new product.  
   **Fields:** `{ name, description, price, productUrl, categories, vendor, image }`
