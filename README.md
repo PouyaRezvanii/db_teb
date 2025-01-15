@@ -7,7 +7,9 @@
 
 # postman curl 
 
-## baseurl = http://localhost:5000/ 
+### localhost and host
+### baseurl = http://localhost:5000/
+### baseurl = https://db-teb-api.onrender.com/ 
 
 ## Features
 
