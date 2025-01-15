@@ -1,5 +1,6 @@
 const Diet = require('../../models/diet')
 const express = require('express')
+const BadRequestError = require('../../common/errors/bad-request-error');
 
 const router = express.Router();
 
