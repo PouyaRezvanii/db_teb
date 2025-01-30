@@ -47,6 +47,7 @@ router.post('/create',
         await vendor.save();
 
         res.status(200).json({
+            message: 'فروشنده با موفقیت ایجاد شد.',
             vendor: vendor
         });
 

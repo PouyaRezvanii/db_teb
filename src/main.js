@@ -1,7 +1,7 @@
 const app = require('./app')
 const mongoose = require('mongoose');
 
- mongoose.connect(process.env.MONGODB_URI)
+ mongoose.connect(process.env.MONGODB_URI_TEST)
 .then(() => {
     app.listen(5000, () => {
         console.log("server is up and running on port 5000")

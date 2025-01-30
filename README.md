@@ -83,6 +83,10 @@
 4. To start the API server:
     ```bash
         npm run dev
+
+5. to run tests:
+    ```bash
+        npm run test
     
     
 The server will run on http://localhost:5000 by default.

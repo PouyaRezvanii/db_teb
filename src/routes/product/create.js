@@ -85,12 +85,16 @@ router.post('/create',
             vendor
         });
 
+        
+        console.log('Request Body:', req.body);
+
         await newProduct.save();
 
         res.status(200).json({ message: 'محصول با موفقیت ایجاد شد.', newProduct });
     } catch (error) {
         console.error(error);
-        next(new BadRequestError('خطا در ایجاد محصول.'));
+        //next(new BadRequestError('خطا در ایجاد محصول.'));
+        return next(error)
     }
 });
 
