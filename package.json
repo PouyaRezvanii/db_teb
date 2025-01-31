@@ -8,7 +8,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["./src/tests/setup.js"]
+    "setupFilesAfterEnv": [
+      "./src/tests/setup.js"
+    ]
   },
   "keywords": [],
   "author": "",
